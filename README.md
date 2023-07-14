@@ -97,7 +97,7 @@ Unlike the previous version of the HITRAN API, the second generation of the API 
 The API key is essential for HAPI2 to connect to the HITRANonline web site and retrieve the data. 
 This key permits accessing the new functions of the HITRAN API v2 such as fetching the molecules, sources, cross-sections etc.<br>
 It can be obtained from the HITRANonline user profile web page: https://hitran.org/profile/.<br>
-To be able to go through the rest of this tutorial, go to the link above and paste your API key to the form below.
+To be able to go through the rest of this tutorial, go to the link above and paste your API key into the prompt below.
 
 ```python
 >>> SETTINGS['api_key'] = getpass('Enter valid API key:')
@@ -132,7 +132,7 @@ Now, let's download some molecular data necessary for the tutorial.
 
 ## Molecules
 
-The new version of the HITRAN API lets users download infomation not only on spectral lines, but also on molecules, isotopic species, publications, experimental cross-sections, partition sums, and collision induced absorption. 
+The new version of the HITRAN API lets users download infomation not only on spectral lines, but also on molecules, isotopic species, publications, experimental cross-sections, partition sums, and collision-induced absorption. 
 Each such entity corresponds to the particular section of the API schema.<br>
 Fetching such objects is done using the "fetch" functions of the API. 
 Let's fetch the information on the molecules in the current version of the HITRAN database. 
@@ -231,7 +231,7 @@ PROCESSED
 Just as for the molecules and any other API objects, isotopologues are constructed from JSON records:
 
 ```python
->>> iso = isos[0] # for example, take the first isotopologue in the list (not necessary this will be the principal one!)
+>>> iso = isos[0] # for example, take the first isotopologue in the list (this won't necessarily be the principal one!)
 >>> iso.dump()
 {'id': 1,
  'molecule_alias_id': 4864,
@@ -296,7 +296,7 @@ PROCESSED
  '__identity__': 'id'}
 ```
 
-The Source objects have the special `citation` appearance mode. This can be helpful if one wants to cite the references from HITRAN:
+Source objects have the special `citation` appearance mode. This can be helpful if one wants to cite the references from HITRAN:
 
 ```python
 >>> src.citation
@@ -433,14 +433,14 @@ To get access to the isotopologue object attached to this transition, we will us
 H2(16O)
 ```
 
-Now, for going further and getting the molecule for this isotopologue, we'll use the `molecule` relationship:
+Now, to go further and get the molecule for this isotopologue, we'll use the `molecule` relationship:
 
 ```python
 >>> trans.isotopologue.molecule
 Water
 ```
 
-HAPI2 also provides a shortcut for transitions, allowing to get the corresponding molecule right away:
+HAPI2 also provides a shortcut for transitions, allowing us to get the corresponding molecule right away:
 
 ```python
 >>> trans.molecule
@@ -457,9 +457,9 @@ Usually, if the default SQLite database backend is used, is is stored in the "lo
 To search for the object in the local database, use the object constructor/initializer as follows:
 
 ```python
->>> Molecule('water') # this will search the molecule with the "water" alias attached
+>>> Molecule('water') # this will search for the molecule with the "water" alias attached
 Water
->>> Molecule('h2o') # this will return the same molecule, but now the different alias was used
+>>> Molecule('h2o') # this will return the same molecule, but now a different alias was used
 Water
 >>> Isotopologue('H2(16O)') # HITRAN isotopologue notation
 H2(16O)
