@@ -58,14 +58,7 @@ First, let's do some imports.
 
 
 ```python
-import json
 from getpass import getpass
-
-%matplotlib notebook
-
-import pylab as pl
-import matplotlib as mpl
-
 from hapi2 import *
 ```
 
